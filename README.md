@@ -38,33 +38,63 @@ Below are the most active open-source projects we've identified, along with the 
 ##### 🔬 SynBioHub (84 stars, BSD-2-Clause license)
 - **What it does:** Web application enabling users and software to browse, upload, and share synthetic biology designs. Hosts the iGEM Registry of Standard Biological Parts and enriched *B. subtilis* and *E. coli* data.
 - **Stack:** JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore)
-- **Development model:** PR-based with CI (Travis + Docker integration tests via SBOLTestSuite)
-- **Current issue focus (34 open issues):** Data portability, interoperability, and infrastructure maintenance — see [Issue #1756](#issue-1756-subcollections-does-not-report-members-in-public-graph) through [Issue #1693](#issue-1693-sendgrid-is-no-longer-working-need-replacement)
+- **Development model:** PR-based with CI (Travis + Docker integration tests via SBOLTestSuite); automatic Docker Hub publishing via GitHub Actions
+- **Current issue focus (8+ open issues in latest milestone SBH 1.6.2):** Data portability, interoperability, and infrastructure maintenance
+  - [Issue #1756 — SubCollections does not report members in public graph](https://github.com/SynBioHub/synbiohub/issues/1756) (bug, Sep 2026)
+  - [Issue #1755 — Recursive download does not follow linked collections](https://github.com/SynBioHub/synbiohub/issues/1755) (bug, Aug 2026)
+  - [Issue #1754 — Legacy data in Virtuoso should be deleted](https://github.com/SynBioHub/synbiohub/issues/1754) (Aug 2026)
+  - [Issue #1753 — OMEX download missing SBML file attachments](https://github.com/SynBioHub/synbiohub/issues/1753) (bug, 2 comments, Aug 2026)
+  - [Issue #1746 — Incremental updates not working with SBOLExplorer](https://github.com/SynBioHub/synbiohub/issues/1746) (bug, Jul 2026)
+  - [Issue #1744 — Backend lacks OR request parsing mechanism](https://github.com/SynBioHub/synbiohub/issues/1744) (bug, Jul 2026)
+
+> **Takeaway:** The community is seriously focused on making design data more reliably portable and interoperable across tools. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points. This signals the ecosystem is maturing — users need dependable data pipelines.
 
 ##### 🔬 iBioSim (67 stars, Apache-2.0 license)
 - **What it does:** Computer-aided design (CAD) tool for modeling, analysis, and design of genetic circuits. Imports/exports SBML (all levels/versions) and supports SBOL. Includes multi-cellular and spatial modeling support.
 - **Stack:** Java + libSBML + reb2sac + GeneNet + Yosys
 - **Active developers:** Lukas Buecherl, Pedro Fontanarrosa, Chris Myers
-- **Current issue focus (305 open issues):** Cross-platform compatibility, Java dependency management, and SynBioHub integration — see [Issue #640](#issue-640-a-java-exception-has-occurred) through [Issue #629](#issue-629-sbml2prism-conversion-bug)
+- **Current issue focus (8+ recent open issues):** Cross-platform compatibility, Java dependency management, and SynBioHub integration
+  - [Issue #640 — Java exception (NoClassDefFoundError with Apache Jena)](https://github.com/MyersResearchGroup/iBioSim/issues/640) (Aug 2025)
+  - [Issue #639 — Can't upload SynBioHub design](https://github.com/MyersResearchGroup/iBioSim/issues/639) (May 2025)
+  - [Issue #638 — Unable to run on macOS](https://github.com/MyersResearchGroup/iBioSim/issues/638) (May 2025)
+  - [Issue #637 — Unable to generate models automatically (Xerces/Jena crash)](https://github.com/MyersResearchGroup/iBioSim/issues/637) (6 comments, Jan 2025)
+  - [Issue #635 — Cannot open on Windows 11](https://github.com/MyersResearchGroup/iBioSim/issues/635) (4 comments, Jan 2025)
+  - [Issue #632 — Can't connect to LCP SynBioHub](https://github.com/MyersResearchGroup/iBioSim/issues/632) (Apr 2024)
+
+**Key error from #637 (most discussed):**
+```
+java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query.ARQ
+Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
+```
+This is a transitive dependency conflict — Apache Jena can't initialize because Xerces is missing or conflicting. Users hitting this when trying to generate models from SBOL designs via SynBioHub integration.
+
+> **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. This signals a strong opportunity for containerized or web-based alternatives.
 
 ##### 🔬 20n/act (92 stars, GPL-3.0 license)
 - **What it does:** Data aggregation and prediction system for bioengineering. Predicts DNA insertions into cells that modify them to produce target molecules ("bioreachables"). Predicted the first bio-route to acetaminophen/Tylenol.
 - **Stack:** Java/Scala + Python (deep learning for LCMS) + R (visualization)
-- **Key modules:** Installer, Reaction Operator inference, Biointerpretation, Reachables computation, Cascades computation, DNA designer, NLP for enzymatic biochemistry, patent search, Bioreachables wiki
+- **Key modules:** Installer, Reaction Operator inference, SAR inference, Biointerpretation, Reachables computation, Cascades computation, DNA designer, NLP for enzymatic biochemistry, patent search, Bioreachables wiki
 - **Current issue focus:** No open issues found — the project appears stable but is primarily maintained internally by 20n Inc.
 
 ##### 🔬 GENtle2 (105 stars, — license)
-- **What it does:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web.
-- **Stack:** JavaScript (Node.js + Express + Gulp)
-- **Current issue focus (75 open issues):** Persistent UI/UX bugs — many dating back to 2015, including annotation jumping, non-functional buttons, and rendering glitches. Signals an opportunity for a modernized replacement.
+- **What it does:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web. Written in JavaScript (Node.js + Express + Gulp).
+- **Current issue focus (9 open issues, many dating to 2015):** Persistent UI/UX bugs
+  - [Issue #253 — Jumping annotations](https://github.com/Synbiota/GENtle2/issues/253) (Sep 2015)
+  - [Issue #252 — Anchor and Cap selections won't change](https://github.com/Synbiota/GENtle2/issues/252) (Sep 2015)
+  - [Issue #250 — BLAST show button doesn't do anything](https://github.com/Synbiota/GENtle2/issues/250) (Sep 2015)
+  - [Issue #247 — SequenceModel should validate stickyEnds](https://github.com/Synbiota/GENtle2/issues/247) (Improvement, Aug 2015)
+  - [Issue #245 — Chromatograph scroll bar display issues](https://github.com/Synbiota/GENtle2/issues/245) (Bug, Deathcon 1, Aug 2015)
+  - [Issue #243 — Ghost tooltip](https://github.com/Synbiota/GENtle2/issues/243) (Bug, Deathcon 3, Aug 2015)
 
-##### 🔬 ART — Automated Recommendation Tool (66 stars, Non-commercial Academic license)
-- **What it does:** Leverages machine learning and probabilistic modeling (MCMC sampling) to guide metabolic engineering systematically, without requiring full mechanistic understanding. Provides recommended strains and probabilistic production predictions.
-- **Stack:** Python (Docker-based distribution)
-- **Key paper:** Radivojević et al., *Nat Commun* 11, 4879 (2020)
-- **Current issue focus:** No open issues found. The repo is primarily a documentation/distribution hub; source code is held in a private repo accessed via license.
+> **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has its own open issues.
 
----
+##### 🔬 Coral (32 stars, MIT license)
+- **What it does:** Python library for encoding the process of designing synthetic DNA constructs. Mirrors traditional GUI-based design steps (ApE, j5, Benchling) as operations on data structures. Enables iterative design through analysis modules and connects seamlessly to outside libraries.
+- **Stack:** Python (works with PyPy + numpy), Biopython, optional matplotlib/intermine
+- **Key feature:** Encodes synthetic DNA design rules into core sequence data types (`DNA`, `RNA`, `Peptide`)
+- **Current issue focus:** Actively maintained, recent updates (June 2026)
+
+> **Takeaway:** Coral is a rare example of a well-maintained, open-source Python library for synbio design automation. It's a great tool for programmatic DNA design and a good reference for how to structure design-as-code workflows.
 
 ### Learning & Resource Hubs
 
@@ -74,8 +104,6 @@ Below are the most active open-source projects we've identified, along with the 
 | **awesome-deep-learning-4-life-sciences** | 168 | Deep learning resources for life sciences (biotech & pharma focus) | [virtualramblas/awesome-deep-learning-4-life-sciences](https://github.com/virtualramblas/awesome-deep-learning-4-life-sciences) |
 | **Machine-Learning-in-Biotechnology** | 106 | ML in biotechnology using Python (Packt Publishing companion) | [PacktPublishing/Machine-Learning-in-Biotechnology-and-Life-Sciences](https://github.com/PacktPublishing/Machine-Learning-in-Biotechnology-and-Life-Sciences) |
 | **BioTech-Resources** | 16 | Resources for learning biotech, biology, synbio, genomics & bioinformatics | [robertosolari/BioTech-Resources](https://github.com/robertosolari/BioTech-Resources) |
-
----
 
 ### Standards & Interoperability
 
@@ -98,42 +126,33 @@ The SynBioHub team is actively fixing bugs around data portability — a sign th
 |-------|-------|--------|------|---------|
 | [#1756](https://github.com/SynBioHub/synbiohub/issues/1756) | SubCollections does not report members in public graph | bug | Sep 2026 | Public graph views don't show members of sub-collections |
 | [#1755](https://github.com/SynBioHub/synbiohub/issues/1755) | Recursive download does not follow linked collections | bug | Aug 2026 | Downloads don't traverse linked collection references |
-| [#1754](https://github.com/SynBioHub/synbiohub/issues/1754) | Legacy data in virtuoso should be deleted | — | Aug 2026 | Database cleanup needed for deprecated entries |
-| [#1753](https://github.com/SynBioHub/synbiohub/issues/1753) | OMEX download is downloading the SBOL but not the SBML file attached | bug | Aug 2026 | OMEX export missing SBML attachments (2 comments, community affected) |
-| [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not work with SBOLExplorer | bug | Jul 2026 | SBOLExplorer can't pull incremental updates from SynBioHub |
-| [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend should have a mechanism to parse OR request | bug | Jul 2026 | Backend lacks OR (or) query parsing support |
-| [#1693](https://github.com/SynBioHub/synbiohub/issues/1693) | SendGrid is no longer working, need replacement | bug | Oct 2025 | Email notification service broken |
+| [#1754](https://github.com/SynBioHub/synbiohub/issues/1754) | Legacy data in Virtuoso should be deleted | — | Aug 2026 | Database cleanup needed for deprecated entries |
+| [#1753](https://github.com/SynBioHub/synbiohub/issues/1753) | OMEX download missing SBML file attachments | bug | Aug 2026 | OMEX export missing SBML attachments (2 comments, community affected) |
+| [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | bug | Jul 2026 | SBOLExplorer can't pull incremental updates from SynBioHub |
+| [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend should parse OR requests | bug | Jul 2026 | Backend lacks OR (or) query parsing support |
 
 > **Takeaway:** The community is seriously focused on making design data more reliably portable and interoperable across tools. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points.
 
 ### 2. Cross-Platform Compatibility & Stability (iBioSim)
 
-iBioSim users are hitting friction on multiple fronts — 305 open issues suggest significant maintenance burden:
+iBioSim users are hitting friction on multiple fronts — 305+ open issues suggest significant maintenance burden:
 
 | Issue | Title | Labels | Date | Summary |
 |-------|-------|--------|------|---------|
-| [#640](https://github.com/MyersResearchGroup/iBioSim/issues/640) | A Java exception has occurred | — | Aug 2025 | Java runtime crash (details in comments) |
+| [#640](https://github.com/MyersResearchGroup/iBioSim/issues/640) | A Java exception has occurred | — | Aug 2025 | Java runtime crash |
 | [#639](https://github.com/MyersResearchGroup/iBioSim/issues/639) | Can't upload SynBioHub design | — | May 2025 | SBOL upload integration failure |
 | [#638](https://github.com/MyersResearchGroup/iBioSim/issues/638) | Unable to run iBioSim 3.2.0 in Mac | — | May 2025 | macOS compatibility break |
-| [#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) | Unable to generate models automatically | — | Jan 2025 | `NoClassDefFoundError: org.apache.xerces.util.XMLChar` — Apache Jena init failure when generating SBOL-derived models. 6 comments, active discussion. |
+| [#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) | Unable to generate models automatically | — | Jan 2025 | `NoClassDefFoundError: org.apache.xerces.util.XMLChar` — Apache Jena init failure. 6 comments, active discussion. |
 | [#635](https://github.com/MyersResearchGroup/iBioSim/issues/635) | I cannot open iBioSim on Windows 11 | — | Jan 2025 | Windows 11 launch failure (4 comments) |
-| [#634](https://github.com/MyersResearchGroup/iBioSim/issues/634) | Bug importing file and when starting iBioSim | — | Sep 2024 | Import/startup crash (6 comments) |
-| [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP Synbiohub | — | Apr 2024 | SynBioHub connection handshake failure |
+| [#634](https://github.com/MyersResearchGroup/iBioSim/issues/634) | Bug importing file and when starting | — | Sep 2024 | Import/startup crash (6 comments) |
+| [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP SynBioHub | — | Apr 2024 | SynBioHub connection handshake failure |
 | [#631](https://github.com/MyersResearchGroup/iBioSim/issues/631) | Problem with External Components | — | Mar 2024 | External component integration problems |
-| [#629](https://github.com/MyersResearchGroup/iBioSim/issues/629) | sbml2prism conversion bug | BUG | Jul 2023 | Conversion tool bug (assigned to dev) |
-
-**Key error from #637 (most discussed):**
-```
-java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query.ARQ
-Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
-```
-This is a transitive dependency conflict — Apache Jena can't initialize because Xerces is missing or conflicting. Users hitting this when trying to generate models from SBOL designs via SynBioHub integration.
 
 > **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. This signals a strong opportunity for containerized or web-based alternatives.
 
 ### 3. UI/UX Bugs in DNA Editors (GENtle2)
 
-GENtle2's 75 open issues (many dating to 2015) reveal persistent UX debt:
+GENtle2's 9+ open issues (many dating to 2015) reveal persistent UX debt:
 
 | Issue | Title | Labels | Date |
 |-------|-------|--------|------|
@@ -141,11 +160,11 @@ GENtle2's 75 open issues (many dating to 2015) reveal persistent UX debt:
 | [#252](https://github.com/Synbiota/GENtle2/issues/252) | Anchor and Cap selections won't change | — | Sep 2015 |
 | [#251](https://github.com/Synbiota/GENtle2/issues/251) | Spacing button doesn't work | — | Sep 2015 |
 | [#250](https://github.com/Synbiota/GENtle2/issues/250) | BLAST show button doesn't do anything | — | Sep 2015 |
-| [#247](https://github.com/Synbiota/GENtle2/issues/247) | sequenceModel should validate stickyEnds | Improvement | Aug 2015 |
-| [#245](https://github.com/Synbiota/GENtle2/issues/245) | chromatograph vertical scroll bar display issues | Bug, Deathcon 1 | Aug 2015 |
+| [#247](https://github.com/Synbiota/GENtle2/issues/247) | SequenceModel should validate stickyEnds | Improvement | Aug 2015 |
+| [#245](https://github.com/Synbiota/GENtle2/issues/245) | Chromatograph vertical scroll bar display issues | Bug, Deathcon 1 | Aug 2015 |
 | [#243](https://github.com/Synbiota/GENtle2/issues/243) | Ghost tooltip (Designer: remove single part) | Bug, Deathcon 3 | Aug 2015 |
 
-> **Takeaway:** Even well-established tools have significant UI debt. TheGENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has 75 open issues of its own.
+> **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has 75+ open issues of its own.
 
 ### 4. Machine Learning & Automated Design (ART, 20n/act)
 
@@ -168,9 +187,9 @@ GENtle2's 75 open issues (many dating to 2015) reveal persistent UX debt:
 
 Based on the research above, here are the stories the community is telling right now:
 
-1. **"The Interoperability Crisis"** — SynBioHub's 34 open issues are almost all about data not moving correctly between tools (OMEX bundles missing files, recursive downloads breaking, incremental sync failing). This is the *current* bottleneck in the synbio workflow.
+1. **"The Interoperability Crisis"** — SynBioHub's open issues are almost all about data not moving correctly between tools (OMEX bundles missing files, recursive downloads breaking, incremental sync failing). This is the *current* bottleneck in the synbio workflow.
 
-2. **"The Desktop Tool Bottleneck"** — iBioSim's 305 issues and GENtle2's 75 issues both point to the same problem: desktop-based CAD tools are struggling with Java dependency hell, OS compatibility, and aging UI codebases. Web-native and containerized tools are the future.
+2. **"The Desktop Tool Bottleneck"** — iBioSim's 305+ issues and GENtle2's 75+ issues both point to the same problem: desktop-based CAD tools are struggling with Java dependency hell, OS compatibility, and aging UI codebases. Web-native and containerized tools are the future.
 
 3. **"From Hand Engineering to Computational Design"** — ART and 20n/act represent a fundamental shift: instead of designing one construct at a time, you enumerate all possible designs computationally and pick the best. This is the "DeepSeek moment" for synbio.
 
@@ -232,7 +251,7 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 - [BioModels](https://www.ebi.ac.uk/biomodels) — Database of mathematical models
 - [3DuF](https://3duf.org) — Open-source microfluidics design tool
 - [BioHackAcademy](https://biohackacademy.github.io) — Community hardware/course platform
-- [ awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) — Curated list of all things synbio
+- [awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) — Curated list of all things synbio
 
 ---
 
