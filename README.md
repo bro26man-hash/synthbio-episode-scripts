@@ -2,7 +2,7 @@
 
 A curated archive for episode scripts, source materials, transcripts, and production assets related to **synthetic biology** and **biotech software tools**. This repository serves as a reference library for anyone producing educational or research content about the synbio/biotech ecosystem — capturing the tools, communities, and open questions that define the field.
 
-> **Research compiled:** September 2026 | **Sources:** GitHub issues, repository analysis, and community documentation across 6+ active synbio/biotech open-source projects.
+> **Research compiled:** September 2026 | **Sources:** GitHub issues, repository analysis, and community documentation across 10+ active synbio/biotech open-source projects.
 
 ---
 
@@ -33,9 +33,9 @@ Below are the most active open-source projects we've identified, along with the 
 | **ART (JBEI)** | 66 | Jupyter Notebook | Machine learning tool for automated strain engineering recommendations | [JBEI/ART](https://github.com/JBEI/ART) |
 | **Coral** | 32 | Python | Library & framework for specifying synthetic biology design processes | [klavinslab/coral](https://github.com/klavinslab/coral) |
 
-#### Deep Dives on the Most Active Repos
+### Deep Dives on the Most Active Repos
 
-##### 🔬 SynBioHub (84 stars, BSD-2-Clause license)
+#### 🔬 SynBioHub (84 stars, BSD-2-Clause license)
 - **What it does:** Web application enabling users and software to browse, upload, and share synthetic biology designs. Hosts the iGEM Registry of Standard Biological Parts and enriched *B. subtilis* and *E. coli* data.
 - **Stack:** JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore)
 - **Development model:** PR-based with CI (Travis + Docker integration tests via SBOLTestSuite); automatic Docker Hub publishing via GitHub Actions
@@ -44,21 +44,24 @@ Below are the most active open-source projects we've identified, along with the 
   - [Issue #1755 — Recursive download does not follow linked collections](https://github.com/SynBioHub/synbiohub/issues/1755) (bug, Aug 2026)
   - [Issue #1754 — Legacy data in Virtuoso should be deleted](https://github.com/SynBioHub/synbiohub/issues/1754) (Aug 2026)
   - [Issue #1753 — OMEX download missing SBML file attachments](https://github.com/SynBioHub/synbiohub/issues/1753) (bug, 2 comments, Aug 2026)
+  - [Issue #1752 — Private-to-public visibility change resets prefix](https://github.com/SynBioHub/synbiohub/issues/1752) (Aug 2026)
   - [Issue #1746 — Incremental updates not working with SBOLExplorer](https://github.com/SynBioHub/synbiohub/issues/1746) (bug, Jul 2026)
   - [Issue #1744 — Backend lacks OR request parsing mechanism](https://github.com/SynBioHub/synbiohub/issues/1744) (bug, Jul 2026)
+  - [Issue #1693 — SendGrid email service no longer working](https://github.com/SynBioHub/synbiohub/issues/1693) (bug, Oct 2025)
 
 > **Takeaway:** The community is seriously focused on making design data more reliably portable and interoperable across tools. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points. This signals the ecosystem is maturing — users need dependable data pipelines.
 
-##### 🔬 iBioSim (67 stars, Apache-2.0 license)
+#### 🔬 iBioSim (67 stars, Apache-2.0 license)
 - **What it does:** Computer-aided design (CAD) tool for modeling, analysis, and design of genetic circuits. Imports/exports SBML (all levels/versions) and supports SBOL. Includes multi-cellular and spatial modeling support.
 - **Stack:** Java + libSBML + reb2sac + GeneNet + Yosys
 - **Active developers:** Lukas Buecherl, Pedro Fontanarrosa, Chris Myers
-- **Current issue focus (8+ recent open issues):** Cross-platform compatibility, Java dependency management, and SynBioHub integration
+- **Current issue focus (305+ open issues):** Cross-platform compatibility, Java dependency management, and SynBioHub integration
   - [Issue #640 — Java exception (NoClassDefFoundError with Apache Jena)](https://github.com/MyersResearchGroup/iBioSim/issues/640) (Aug 2025)
   - [Issue #639 — Can't upload SynBioHub design](https://github.com/MyersResearchGroup/iBioSim/issues/639) (May 2025)
-  - [Issue #638 — Unable to run on macOS](https://github.com/MyersResearchGroup/iBioSim/issues/638) (May 2025)
+  - [Issue #638 — Unable to run iBioSim 3.2.0 in Mac](https://github.com/MyersResearchGroup/iBioSim/issues/638) (May 2025)
   - [Issue #637 — Unable to generate models automatically (Xerces/Jena crash)](https://github.com/MyersResearchGroup/iBioSim/issues/637) (6 comments, Jan 2025)
-  - [Issue #635 — Cannot open on Windows 11](https://github.com/MyersResearchGroup/iBioSim/issues/635) (4 comments, Jan 2025)
+  - [Issue #635 — I cannot open iBioSim on Windows 11](https://github.com/MyersResearchGroup/iBioSim/issues/635) (4 comments, Jan 2025)
+  - [Issue #634 — Bug importing file and when starting](https://github.com/MyersResearchGroup/iBioSim/issues/634) (6 comments, Sep 2024)
   - [Issue #632 — Can't connect to LCP SynBioHub](https://github.com/MyersResearchGroup/iBioSim/issues/632) (Apr 2024)
 
 **Key error from #637 (most discussed):**
@@ -70,31 +73,50 @@ This is a transitive dependency conflict — Apache Jena can't initialize becaus
 
 > **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. This signals a strong opportunity for containerized or web-based alternatives.
 
-##### 🔬 20n/act (92 stars, GPL-3.0 license)
+#### 🔬 20n/act (92 stars, GPL-3.0 license)
 - **What it does:** Data aggregation and prediction system for bioengineering. Predicts DNA insertions into cells that modify them to produce target molecules ("bioreachables"). Predicted the first bio-route to acetaminophen/Tylenol.
 - **Stack:** Java/Scala + Python (deep learning for LCMS) + R (visualization)
 - **Key modules:** Installer, Reaction Operator inference, SAR inference, Biointerpretation, Reachables computation, Cascades computation, DNA designer, NLP for enzymatic biochemistry, patent search, Bioreachables wiki
 - **Current issue focus:** No open issues found — the project appears stable but is primarily maintained internally by 20n Inc.
 
-##### 🔬 GENtle2 (105 stars, — license)
+#### 🔬 GENtle2 (105 stars, — license)
 - **What it does:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web. Written in JavaScript (Node.js + Express + Gulp).
-- **Current issue focus (9 open issues, many dating to 2015):** Persistent UI/UX bugs
+- **Current issue focus (75+ open issues, many dating to 2015):** Persistent UI/UX bugs and feature gaps
   - [Issue #253 — Jumping annotations](https://github.com/Synbiota/GENtle2/issues/253) (Sep 2015)
   - [Issue #252 — Anchor and Cap selections won't change](https://github.com/Synbiota/GENtle2/issues/252) (Sep 2015)
+  - [Issue #251 — Spacing button doesn't work](https://github.com/Synbiota/GENtle2/issues/251) (Sep 2015)
   - [Issue #250 — BLAST show button doesn't do anything](https://github.com/Synbiota/GENtle2/issues/250) (Sep 2015)
   - [Issue #247 — SequenceModel should validate stickyEnds](https://github.com/Synbiota/GENtle2/issues/247) (Improvement, Aug 2015)
-  - [Issue #245 — Chromatograph scroll bar display issues](https://github.com/Synbiota/GENtle2/issues/245) (Bug, Deathcon 1, Aug 2015)
-  - [Issue #243 — Ghost tooltip](https://github.com/Synbiota/GENtle2/issues/243) (Bug, Deathcon 3, Aug 2015)
+  - [Issue #245 — Chromatograph vertical scroll bar display issues](https://github.com/Synbiota/GENtle2/issues/245) (Bug, Deathcon 1, Aug 2015)
+  - [Issue #243 — Ghost tooltip (Designer: remove single part)](https://github.com/Synbiota/GENtle2/issues/243) (Bug, Deathcon 3, Aug 2015)
 
 > **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has its own open issues.
 
-##### 🔬 Coral (32 stars, MIT license)
+#### 🔬 Coral (32 stars, MIT license)
 - **What it does:** Python library for encoding the process of designing synthetic DNA constructs. Mirrors traditional GUI-based design steps (ApE, j5, Benchling) as operations on data structures. Enables iterative design through analysis modules and connects seamlessly to outside libraries.
 - **Stack:** Python (works with PyPy + numpy), Biopython, optional matplotlib/intermine
 - **Key feature:** Encodes synthetic DNA design rules into core sequence data types (`DNA`, `RNA`, `Peptide`)
 - **Current issue focus:** Actively maintained, recent updates (June 2026)
 
 > **Takeaway:** Coral is a rare example of a well-maintained, open-source Python library for synbio design automation. It's a great tool for programmatic DNA design and a good reference for how to structure design-as-code workflows.
+
+### Supporting Tools & Frameworks
+
+Beyond the headline projects, the synbio ecosystem includes a rich set of supporting tools that are worth knowing about:
+
+| Tool | Category | Description | Link |
+|------|----------|-------------|------|
+| **Cello/CelloCad** | Genetic circuit design | Logic-gate-based genetic circuit design automation | [CIDARLAB/cello](https://github.com/CIDARLAB/cello) |
+| **Eugene** | Design language | Human- and machine-readable language for specifying biological system designs | [eugenecad.org](http://eugenecad.org/) |
+| **SBOL Canvas** | Visualization | Genetic circuit schematic building using SBOL standard | [sbolcanvas.org](https://sbolcanvas.org/) |
+| **SnapGene** | Plasmid simulation | Visual plasmid construction + simulation (commercial) | [snapgene.com](https://www.snapgene.com/) |
+| **DNA Chisel** | Codon optimization | Codon optimization and solving sequence constraints | [Edinburgh-Genome-Foundry/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) |
+| **PySB** | Systems biology modeling | Systems biology modeling in Python | [pysb.org](https://pysb.org/) |
+| **COPASI** | Metabolic modeling | Modeling biochemical reaction networks | [copasi.org](https://copasi.org/) |
+| **COBRA** | Metabolic modeling | Whole-cell metabolic modeler (E. Coli, etc.) | [opencobra.github.io](https://opencobra.github.io/) |
+| **BioNetGen** | Rule-based modeling | Structure-based modeling of biochemical reaction networks | [RuleWorld/bionetgen](https://github.com/RuleWorld/bionetgen) |
+| **BioCRNpyler** | CRN compiler | Biomolecular chemical reaction network compiler | [BuildACell/bioCRNpyler](https://github.com/BuildACell/bioCRNpyler) |
+| **KBase** | Analysis platform | "AWS for systems bio analysis," hosted by DOE | [kbase.us](https://kbase.us) |
 
 ### Learning & Resource Hubs
 
@@ -128,10 +150,12 @@ The SynBioHub team is actively fixing bugs around data portability — a sign th
 | [#1755](https://github.com/SynBioHub/synbiohub/issues/1755) | Recursive download does not follow linked collections | bug | Aug 2026 | Downloads don't traverse linked collection references |
 | [#1754](https://github.com/SynBioHub/synbiohub/issues/1754) | Legacy data in Virtuoso should be deleted | — | Aug 2026 | Database cleanup needed for deprecated entries |
 | [#1753](https://github.com/SynBioHub/synbiohub/issues/1753) | OMEX download missing SBML file attachments | bug | Aug 2026 | OMEX export missing SBML attachments (2 comments, community affected) |
+| [#1752](https://github.com/SynBioHub/synbiohub/issues/1752) | Private-to-public visibility resets prefix | — | Aug 2026 | Changing visibility from private to public resets the URI prefix |
 | [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | bug | Jul 2026 | SBOLExplorer can't pull incremental updates from SynBioHub |
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend should parse OR requests | bug | Jul 2026 | Backend lacks OR (or) query parsing support |
+| [#1693](https://github.com/SynBioHub/synbiohub/issues/1693) | SendGrid email service no longer working | bug | Oct 2025 | Email notification backend broken |
 
-> **Takeaway:** The community is seriously focused on making design data more reliably portable and interoperable across tools. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points.
+> **Takeaway:** The community is seriously focused on making design data more reliably portable and interoperable across tools. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points. This signals the ecosystem is maturing — users need dependable data pipelines.
 
 ### 2. Cross-Platform Compatibility & Stability (iBioSim)
 
@@ -152,7 +176,7 @@ iBioSim users are hitting friction on multiple fronts — 305+ open issues sugge
 
 ### 3. UI/UX Bugs in DNA Editors (GENtle2)
 
-GENtle2's 9+ open issues (many dating to 2015) reveal persistent UX debt:
+GENtle2's 75+ open issues (many dating to 2015) reveal persistent UX debt:
 
 | Issue | Title | Labels | Date |
 |-------|-------|--------|------|
@@ -255,4 +279,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*This archive was compiled from active GitHub research on the synthetic biology and biotech software ecosystem, capturing the tools, standards, and community concerns as of September 2026. Research methodology: repository search, star-ranked analysis, open-issue triage across 6+ projects, and detailed issue inspection of 10+ high-priority bugs.*
+*This archive was compiled from active GitHub research on the synthetic biology and biotech software ecosystem, capturing the tools, standards, and community concerns as of September 2026. Research methodology: repository search, star-ranked analysis, open-issue triage across 10+ projects, and detailed issue inspection of 15+ high-priority bugs across 5 thematic categories.*
