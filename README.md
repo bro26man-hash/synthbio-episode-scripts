@@ -44,7 +44,6 @@ Below are the most active open-source projects we've identified, along with the 
 | **engineering-biology-design-cycle** | — | Python | Hands-on template simulating the design-build-test-learn cycle using synthetic promoter-strength data | [DrSeed/engineering-biology-design-cycle](https://github.com/DrSeed/engineering-biology-design-cycle) |
 | **qfoldit** | 5 | HTML | Distributed architecture & 3D engines for molecular design and synthetic biology workflows — multiplayer scientific research simulation | [qfoldit/qfoldit.github.io](https://github.com/qfoldit/qfoldit.github.io) |
 | **synthetic (telmomenezes)** | 48 | Python | Symbolic Generators for Complex Networks — applicable to synthetic biological network design | [telmomenezes/synthetic](https://github.com/telmomenezes/synthetic) |
-| **BiArkit** | 1 | Java | Versatile toolkit integrating genome browser, riboswitch/SiRNA design, metabolic network simulator, and expression visualization | [sysu-software/BiArkit](https://github.com/sysu-software/BiArkit) |
 
 ---
 
@@ -55,18 +54,19 @@ Below are the most active open-source projects we've identified, along with the 
 - **What it does:** Web application enabling users and software to browse, upload, and share synthetic biology designs. Hosts the iGEM Registry of Standard Biological Parts and enriched *B. subtilis* and *E. coli* data.
 - **Stack:** JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore)
 - **Development model:** PR-based with CI (Travis + Docker integration tests via SBOLTestSuite); automatic Docker Hub publishing via GitHub Actions; releases auto-published to Docker Hub via GitHub Actions
-- **Current issue focus (8 open issues in latest milestone SBH 1.6.2):** Data portability, interoperability, and infrastructure maintenance
+- **Recent commit activity (as of Sep 6, 2026):** Very active — 5 commits in the last week, including fixes for public subcollection graph clauses and Explorer compatibility pinning. Maintainer `cjmyers` and contributor `Mike Arpaia` are co-leading the 1.6.2 milestone.
+- **Current issue focus (8 open issues in milestone SBH 1.6.2):** Data portability, interoperability, and infrastructure maintenance
 
-#### Open Issues (September 2026)
+#### Open Issues (Sep 2026)
 
 | Issue | Title | Labels | Date | Summary |
 |-------|-------|--------|------|---------|
-| [#1756](https://github.com/SynBioHub/synbiohub/issues/1756) | SubCollections does not report members in public graph | bug | Sep 3, 2026 | Public graph views don't show members of sub-collections |
+| [#1756](https://github.com/SynBioHub/synbiohub/issues/1756) | SubCollections does not report members in public graph | bug | Sep 3, 2026 | Public graph views don't show members of sub-collections (fix commit already merged: `7c6c191`) |
 | [#1755](https://github.com/SynBioHub/synbiohub/issues/1755) | Recursive download does not follow linked collections | bug | Aug 30, 2026 | Downloads don't traverse linked collection references |
 | [#1754](https://github.com/SynBioHub/synbiohub/issues/1754) | Legacy data in Virtuoso should be deleted | — | Aug 23, 2026 | Database cleanup needed for deprecated entries |
 | [#1753](https://github.com/SynBioHub/synbiohub/issues/1753) | OMEX download missing SBML file attachments | bug | Aug 21, 2026 | OMEX export missing SBML attachments (2 comments, community affected) |
 | [#1752](https://github.com/SynBioHub/synbiohub/issues/1752) | Private-to-public visibility change resets prefix | — | Aug 19, 2026 | Changing visibility from private to public resets the URI prefix |
-| [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | bug | Jul 19, 2026 | SBOLExplorer can't pull incremental updates from SynBioHub |
+| [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | bug | Jul 19, 2026 | SBOLExplorer can't pull incremental updates from SynBioHub (assigned to cl117) |
 | [#1745](https://github.com/SynBioHub/synbiohub/issues/1745) | Root collection filter should handle SBOLCanvas layout properly | change | Jul 16, 2026 | SBOLCanvas layout not respected in root collection filter |
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend should have a mechanism to parse OR request | bug | Jul 16, 2026 | Backend lacks OR (or) query parsing support |
 
@@ -86,9 +86,10 @@ Below are the most active open-source projects we've identified, along with the 
 - **What it does:** Computer-aided design (CAD) tool for modeling, analysis, and design of genetic circuits. Imports/exports SBML (all levels/versions) and supports SBOL. Includes multi-cellular and spatial modeling support.
 - **Stack:** Java + libSBML + reb2sac + GeneNet + Yosys
 - **Active developers:** Lukas Buecherl, Pedro Fontanarrosa, Chris Myers
+- **Recent commit activity (as of Apr 7, 2026):** Moderate but steady — 5 commits in recent months, including headless-mode stdout fixes, Java SDK gitignore updates, and build dependency fixes. Contributor `Travis Uhrig` is actively maintaining alongside `cjmyers`.
 - **Current issue focus (305+ open issues):** Cross-platform compatibility, Java dependency management, and SynBioHub integration
 
-#### Recent Open Issues (2025–2026)
+#### Recent Open Issues (2024–2026)
 
 | Issue | Title | Labels | Date | Summary |
 |-------|-------|--------|------|---------|
@@ -99,7 +100,6 @@ Below are the most active open-source projects we've identified, along with the 
 | [#635](https://github.com/MyersResearchGroup/iBioSim/issues/635) | I cannot open iBioSim on Windows 11 | — | Jan 6, 2025 | Windows 11 launch failure (4 comments) |
 | [#634](https://github.com/MyersResearchGroup/iBioSim/issues/634) | Bug importing file and when starting | — | Sep 2024 | Import/startup crash (6 comments) |
 | [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP SynBioHub | — | Apr 2024 | SynBioHub connection handshake failure |
-| [#631](https://github.com/MyersResearchGroup/iBioSim/issues/631) | Problem with External Components | — | Mar 2024 | External component integration problems |
 
 #### Community Discussion Highlights
 
@@ -111,35 +111,32 @@ java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query
 Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 ```
 
-- **Hatem-synbio (reporter):** Was debugging Kenzo's toggle switch model and following the iBioSim tutorial on page 94 for automatic model generation. Offered to share the COMBINE archive on Slack.
-- **cjmyers (maintainer):** Asked which SynBioHub instance was being used; later identified the root cause — *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."*
+- **Hatem-synbio (reporter):** Was debugging Kenzo's toggle switch model and following the iBioSim tutorial on page 94 for automatic model generation. Shared screenshots and offered the COMBINE archive on Slack.
+- **cjmyers (maintainer):** Identified the root cause — *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."*
 
 > **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. The #637 discussion reveals a deeper issue: iBioSim fails with a cryptic Jena/Xerces crash when the underlying data (iGEM parts) lacks the required interaction information — rather than giving a user-friendly error. This signals a strong opportunity for containerized or web-based alternatives with better error handling.
 
 ---
 
-### 🔬 GENtle2 (105 stars, 37 forks)
+### 🔬 GENtle2 (105 stars)
 
 - **What it does:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web. Written in JavaScript (Node.js + Express + Gulp).
-- **Stack:** JavaScript (Node.js + Express + Gulp) + CircleCI for CI
-- **Current issue focus (75+ open issues):** Persistent UI/UX bugs and feature gaps; active refactor milestone "Canvas events & RES/annotation cards information"
+- **Current issue focus (75+ open issues, many dating to 2014):** Persistent UI/UX bugs and feature gaps. The maintainer (`alexandremeunier`) has been working on a "Refactor" milestone targeting Canvas events, RES/annotation cards, and sequence opening/editing — but progress is slow.
 
-#### Recent Open Issues (Updated July 2023)
+Notable long-standing issues:
 
-| Issue | Title | Labels | Date | Milestone |
-|-------|-------|--------|------|-----------|
-| [#164](https://github.com/Synbiota/GENtle2/issues/164) | Display feature details when hovering | — | Jul 2023 | Refactor — Canvas events & RES/annotation cards |
-| [#163](https://github.com/Synbiota/GENtle2/issues/163) | Tracking mouse events in `Artist` | Feature, Refactor | Jul 2023 | Refactor — Canvas events & RES/annotation cards |
-| [#162](https://github.com/Synbiota/GENtle2/issues/162) | Selection disappears when copied through context menu | Bug | Jul 2023 | — |
-| [#161](https://github.com/Synbiota/GENtle2/issues/161) | Selection disappears with hotkeys, context menu remains | Bug | Jul 2023 | — |
-| [#159](https://github.com/Synbiota/GENtle2/issues/159) | Tracking shapes in `Artist` | Feature, Refactor | Jul 2023 | Refactor — Canvas events & RES/annotation cards |
-| [#158](https://github.com/Synbiota/GENtle2/issues/158) | Creating a feature clears plasmid map but doesn't redraw | Bug, Refactor | Jul 2023 | — |
-| [#156](https://github.com/Synbiota/GENtle2/issues/156) | Caret moves by one base unexpectedly during selection | Bug, Refactor | Jul 2023 | — |
-| [#154](https://github.com/Synbiota/GENtle2/issues/154) | Plasmid map title overflows for long sequence names | Refactor, Optimization | Jul 2023 | — |
-| [#132](https://github.com/Synbiota/GENtle2/issues/132) | Replace non-allowed characters when importing GenBank | Backlog, Refactor | Jul 2023 | Refactor — Sequence opening/editing |
-| [#130](https://github.com/Synbiota/GENtle2/issues/130) | Bug with selection using up arrow | Bug, Refactor | Jul 2023 | Refactor — Sequence opening/editing |
+| Issue | Title | Labels | Date |
+|-------|-------|--------|------|
+| [#164](https://github.com/Synbiota/GENtle2/issues/164) | Display feature details when hovering | — | Sep 2014 |
+| [#163](https://github.com/Synbiota/GENtle2/issues/163) | Tracking mouse events in `Artist` | Feature, Refactor | Sep 2014 |
+| [#162](https://github.com/Synbiota/GENtle2/issues/162) | Selection disappears via context menu | Bug | Sep 2014 |
+| [#161](https://github.com/Synbiota/GENtle2/issues/161) | Selection disappears with hotkeys without shift | Bug | Sep 2014 |
+| [#159](https://github.com/Synbiota/GENtle2/issues/159) | Tracking shapes in `Artist` | Feature, Refactor | Sep 2014 |
+| [#158](https://github.com/Synbiota/GENtle2/issues/158) | Creating a feature clears plasmid map without redraw | Bug, Refactor | Sep 2014 |
+| [#156](https://github.com/Synbiota/GENtle2/issues/156) | Caret moves by one base unexpectedly during selection | Bug, Refactor | Sep 2014 |
+| [#132](https://github.com/Synbiota/GENtle2/issues/132) | Replace non-allowed characters when importing Genebank | Backlog, Refactor | Jun 2014 |
 
-> **Takeaway:** GENtle2 has an active refactor milestone focused on canvas events and sequence editing, but many of these issues date back to 2014–2015. The community is attempting a modern web-based rewrite, but progress is slow due to limited contributors. The refactor milestones suggest awareness of the problems, but the 10+ year gap between issue creation and last update signals a community starved for contributors.
+> **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has its own open issues. The refactor milestones suggest awareness of the problems, but the 10+ year gap between issue creation and last update signals a community starved for contributors.
 
 ---
 
@@ -164,35 +161,20 @@ Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 
 #### Open Issues (2022–2023)
 
-| Issue | Title | Labels | Date | Assignee |
-|-------|-------|--------|------|----------|
-| [#47](https://github.com/Sheffield-iGEM/syn-zeug/issues/47) | Find ORFs In Proteins | — | Oct 2022 | — |
-| [#46](https://github.com/Sheffield-iGEM/syn-zeug/issues/46) | Upstream `rust-bio` changes | — | Oct 2022 | — |
-| [#42](https://github.com/Sheffield-iGEM/syn-zeug/issues/42) | Miscellaneous Tools | — | Sep 2022 | — |
-| [#39](https://github.com/Sheffield-iGEM/syn-zeug/issues/39) | Add info about selected regions (like Benchling) | — | Aug 2022 | kesler20 |
-| [#38](https://github.com/Sheffield-iGEM/syn-zeug/issues/38) | Pause a tool in the pipeline | — | Aug 2022 | kesler20 |
-| [#37](https://github.com/Sheffield-iGEM/syn-zeug/issues/37) | Add nice looking tooltips! | — | Aug 2022 | kesler20 |
-| [#36](https://github.com/Sheffield-iGEM/syn-zeug/issues/36) | Add dragging for building up a pipeline | — | Aug 2022 | kesler20 |
-| [#26](https://github.com/Sheffield-iGEM/syn-zeug/issues/26) | Implement New Tool: "Percent Composition" | enhancement, tool | Aug 2022 | adam-spencer |
-| [#17](https://github.com/Sheffield-iGEM/syn-zeug/issues/17) | Implement New Tool: "Shuffle Sequence" | enhancement, tool | Aug 2022 | adam-spencer |
-| [#8](https://github.com/Sheffield-iGEM/syn-zeug/issues/8) | Implement New Tool: "Mutate Sequence" | enhancement, tool | Aug 2022 | adam-spencer |
+| Issue | Title | Labels | Date | Summary |
+|-------|-------|--------|------|---------|
+| [#47](https://github.com/Sheffield-iGEM/syn-zeug/issues/47) | Find ORFs In Proteins | — | Oct 2022 | Feature request for protein ORF finding |
+| [#46](https://github.com/Sheffield-iGEM/syn-zeug/issues/46) | Upstream `rust-bio` changes | — | Oct 2022 | Dependency update needed (1 comment) |
+| [#42](https://github.com/Sheffield-iGEM/syn-zeug/issues/42) | Miscellaneous Tools | — | Sep 2022 | General feature tracking (1 comment) |
+| [#39](https://github.com/Sheffield-iGEM/syn-zeug/issues/39) | Add region info to input field (like Benchling) | — | Aug 2022 | UX improvement request |
+| [#38](https://github.com/Sheffield-iGEM/syn-zeug/issues/38) | Pause a tool in the pipeline | — | Aug 2022 | Pipeline UX feature |
+| [#37](https://github.com/Sheffield-iGEM/syn-zeug/issues/37) | Add nice looking tooltips! | — | Aug 2022 | UI enhancement (assigned to kesler20) |
+| [#36](https://github.com/Sheffield-iGEM/syn-zeug/issues/36) | Add dragging for building up a pipeline | — | Aug 2022 | Pipeline UX feature |
+| [#26](https://github.com/Sheffield-iGEM/syn-zeug/issues/26) | Implement New Tool: "Percent Composition" | enhancement, tool, basic | Aug 2022 | New analysis tool (assigned to adam-spencer) |
+| [#17](https://github.com/Sheffield-iGEM/syn-zeug/issues/17) | Implement New Tool: "Shuffle Sequence" | enhancement, tool, basic | Apr 2022 | New analysis tool |
+| [#8](https://github.com/Sheffield-iGEM/syn-zeug/issues/8) | Implement New Tool: "Mutate Sequence" | enhancement, tool, basic | Apr 2022 | New analysis tool (1 comment) |
 
-> **Takeaway:** Syn-Zeug represents a new wave of Rust-based synthetic biology tools that prioritize performance, type safety, and modern web deployment. The combination of a Rust core with a Svelte frontend and WASM export is an architecture pattern worth watching. It's still early-stage (7 stars, 3 forks) but the Sheffield-iGEM team is actively maintaining it. The open issues focus on expanding the tool set and improving the pipeline UX.
-
----
-
-### 🔬 SynBioDex / sboljs3 (7 stars, TypeScript)
-
-- **What it does:** A library for the Synthetic Biology Open Language (SBOL) written in TypeScript, for JavaScript/TypeScript applications in the browser or Node.js. Built on [rdfoo](https://github.com/udp/rdfoo) for object-oriented RDF abstractions.
-- **Capabilities:**
-  - ✅ Reading and writing SBOL1, SBOL2, and SBOL3
-  - ✅ Converting between SBOL1, SBOL2, and SBOL3
-  - ✅ Reading (converting) FASTA and GenBank
-  - ❌ Writing FASTA and GenBank (not yet implemented)
-  - ❌ Validation (not yet implemented)
-- **Academic citation:** Published in *ACS Synthetic Biology* (McLaughlin et al., 2019) —DOI: 10.1021/acssynbio.8b00338
-
-> **Takeaway:** sboljs3 is the web-native successor to the Java-based libSBOLj, bringing SBOL parsing to the browser. It's still missing FASTA/GenBank writing and validation, but it fills a critical gap: enabling SBOL-aware web applications. As SynBioHub and other tools increasingly need web-facing APIs, TypeScript SBOL libraries like sboljs3 become infrastructure.
+> **Takeaway:** Syn-Zeug represents a new wave of Rust-based synthetic biology tools that prioritize performance, type safety, and modern web deployment. The combination of a Rust core with a Svelte frontend and WASM export is an architecture pattern worth watching. It's still early-stage (7 stars, 3 forks) but the Sheffield-iGEM team is actively maintaining it. The open issues are all feature requests, not bug fixes — a sign the core is stable and the community is ready for expansion.
 
 ---
 
@@ -240,21 +222,21 @@ Beyond the headline projects, the synbio ecosystem includes a rich set of suppor
 
 ## What the Community Is Currently Working On & Concerned About
 
-Based on recent open issues across the top projects, here are the themes dominating community attention:
+Based on recent open issues and commit activity across the top projects, here are the themes dominating community attention as of September 2026:
 
 ### 1. SBOL Data Handling & Interoperability (SynBioHub)
 
-The SynBioHub team is actively fixing bugs around data portability — a sign the ecosystem is maturing and users need dependable data pipelines. All 8 open issues are tagged for milestone **SBH 1.6.2**:
+SynBioHub is in its most active development sprint in months. The 1.6.2 milestone has 8 open issues, all focused on data portability and reliability. The maintainer (`cjmyers`) is actively merging fixes weekly.
 
 | Issue | Title | Labels | Date | Summary |
 |-------|-------|--------|------|---------|
-| [#1756](https://github.com/SynBioHub/synbiohub/issues/1756) | SubCollections does not report members in public graph | bug | Sep 2026 | Public graph views don't show sub-collection members |
+| [#1756](https://github.com/SynBioHub/synbiohub/issues/1756) | SubCollections does not report members in public graph | bug | Sep 2026 | Fix already merged (`7c6c191` — "Fix public subcollection graph clauses") |
 | [#1755](https://github.com/SynBioHub/synbiohub/issues/1755) | Recursive download does not follow linked collections | bug | Aug 2026 | Downloads don't traverse linked collection references |
 | [#1754](https://github.com/SynBioHub/synbiohub/issues/1754) | Legacy data in Virtuoso should be deleted | — | Aug 2026 | Database cleanup needed for deprecated entries |
-| [#1753](https://github.com/SynBioHub/synbiohub/issues/1753) | OMEX download missing SBML file attachments | bug | Aug 2026 | OMEX export missing SBML attachments (2 comments) |
-| [#1752](https://github.com/SynBioHub/synbiohub/issues/1752) | Private-to-public visibility resets prefix | — | Aug 2026 | Changing visibility resets the URI prefix |
-| [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | bug | Jul 2026 | SBOLExplorer can't pull incremental updates |
-| [#1745](https://github.com/SynBioHub/synbiohub/issues/1745) | Root collection filter should handle SBOLCanvas layout | change | Jul 2026 | SBOLCanvas layout not respected in filter |
+| [#1753](https://github.com/SynBioHub/synbiohub/issues/1753) | OMEX download missing SBML file attachments | bug | Aug 2026 | OMEX export missing SBML attachments (2 comments, community affected) |
+| [#1752](https://github.com/SynBioHub/synbiohub/issues/1752) | Private-to-public visibility change resets prefix | — | Aug 2026 | Changing visibility from private to public resets the URI prefix |
+| [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | bug | Jul 2026 | SBOLExplorer can't pull incremental updates (assigned to cl117) |
+| [#1745](https://github.com/SynBioHub/synbiohub/issues/1745) | Root collection filter should handle SBOLCanvas layout | change | Jul 2026 | SBOLCanvas layout not respected in root collection filter |
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend should parse OR requests | bug | Jul 2026 | Backend lacks OR query parsing support |
 
 **Community discussion highlights from #1753:**
@@ -265,17 +247,22 @@ The SynBioHub team is actively fixing bugs around data portability — a sign th
 
 ### 2. Cross-Platform Compatibility & Stability (iBioSim)
 
-iBioSim users are hitting friction on multiple fronts — 305+ open issues suggest significant maintenance burden:
+iBioSim users are hitting friction on multiple fronts — 305+ open issues suggest significant maintenance burden, but recent commits show the team is actively addressing build and headless-mode issues.
 
 | Issue | Title | Labels | Date | Summary |
 |-------|-------|--------|------|---------|
 | [#640](https://github.com/MyersResearchGroup/iBioSim/issues/640) | A Java exception has occurred | — | Aug 2025 | Java runtime crash (1 comment) |
 | [#639](https://github.com/MyersResearchGroup/iBioSim/issues/639) | Can't upload SynBioHub design | — | May 2025 | SBOL upload integration failure (1 comment) |
 | [#638](https://github.com/MyersResearchGroup/iBioSim/issues/638) | Unable to run iBioSim 3.2.0 in Mac | — | May 2025 | macOS compatibility break (1 comment) |
-| [#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) | Unable to generate models automatically | — | Jan 2025 | Jena/Xerces crash when iGEM parts lack interaction info (6 comments) |
+| [#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) | Unable to generate models automatically | — | Jan 2025 | `NoClassDefFoundError: org.apache.xerces.util.XMLChar` — Apache Jena init failure. 6 comments, active discussion. |
 | [#635](https://github.com/MyersResearchGroup/iBioSim/issues/635) | I cannot open iBioSim on Windows 11 | — | Jan 2025 | Windows 11 launch failure (4 comments) |
 | [#634](https://github.com/MyersResearchGroup/iBioSim/issues/634) | Bug importing file and when starting | — | Sep 2024 | Import/startup crash (6 comments) |
-| [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP Synbiohub | — | Apr 2024 | SynBioHub connection handshake failure (2 comments) |
+
+**Recent fixes (2026):**
+- `74ac459` — Merge PR #645: headless stdout fix (Apr 2026)
+- `e2d8b7a` — Filter unread progress stdout noise in headless mode (Mar 2026)
+- `17c876e` — Update .gitignore for Java SDKMAN (Mar 2026)
+- `9df4464` — Add missing full local build deps (Mar 2026)
 
 **Community discussion highlights from #637 (most discussed recent issue):**
 
@@ -285,49 +272,50 @@ java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query
 Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 ```
 
-- **Hatem-synbio (reporter):** Was debugging Kenzo's toggle switch model and following the iBioSim tutorial on page 94 for automatic model generation. Shared screenshots and offered to send the OMEX file via Slack.
-- **cjmyers (maintainer):** Diagnosed the root cause — *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."*
+- **Hatem-synbio (reporter):** Was debugging Kenzo's toggle switch model and following the iBioSim tutorial on page 94 for automatic model generation. Shared screenshots and offered the COMBINE archive on Slack.
+- **cjmyers (maintainer):** Identified the root cause — *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."*
 
 > **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. The #637 discussion reveals a deeper issue: iBioSim fails with a cryptic Jena/Xerces crash when the underlying data (iGEM parts) lacks the required interaction information — rather than giving a user-friendly error. This signals a strong opportunity for containerized or web-based alternatives with better error handling.
 
-### 3. UI/UX Refactoring in DNA Editors (GENtle2)
+### 3. UI/UX Debt in DNA Editors (GENtle2)
 
-GENtle2 has 10 recently-updated issues (last updated July 2023), all under an active **Refactor — Canvas events & RES/annotation cards information** milestone:
+GENtle2's 75+ open issues (many dating to 2014) reveal persistent UX debt. The maintainer has created "Refactor" milestones targeting Canvas events, RES/annotation cards, and sequence opening/editing, but progress is slow.
 
-| Issue | Title | Labels | Milestone |
-|-------|-------|--------|-----------|
-| [#164](https://github.com/Synbiota/GENtle2/issues/164) | Display feature details when hovering | — | Refactor — Canvas events |
-| [#163](https://github.com/Synbiota/GENtle2/issues/163) | Tracking mouse events in `Artist` | Feature, Refactor | Refactor — Canvas events |
-| [#162](https://github.com/Synbiota/GENtle2/issues/162) | Selection disappears via context menu | Bug | — |
-| [#161](https://github.com/Synbiota/GENtle2/issues/161) | Selection disappears with hotkeys | Bug | — |
-| [#159](https://github.com/Synbiota/GENtle2/issues/159) | Tracking shapes in `Artist` | Feature, Refactor | Refactor — Canvas events |
-| [#158](https://github.com/Synbiota/GENtle2/issues/158) | Creating feature clears map without redraw | Bug, Refactor | — |
-| [#156](https://github.com/Synbiota/GENtle2/issues/156) | Caret moves unexpectedly during selection | Bug, Refactor | — |
-| [#154](https://github.com/Synbiota/GENtle2/issues/154) | Plasmid map title overflows | Refactor, Optimization | — |
-| [#132](https://github.com/Synbiota/GENtle2/issues/132) | Replace invalid chars on GenBank import | Backlog, Refactor | Refactor — Sequence opening |
-| [#130](https://github.com/Synbiota/GENtle2/issues/130) | Bug with selection using up arrow | Bug, Refactor | Refactor — Sequence opening |
+| Issue | Title | Labels | Date | Milestone |
+|-------|-------|--------|------|-----------|
+| [#164](https://github.com/Synbiota/GENtle2/issues/164) | Display feature details when hovering | — | Sep 2014 | Refactor — Canvas events |
+| [#163](https://github.com/Synbiota/GENtle2/issues/163) | Tracking mouse events in `Artist` | Feature, Refactor | Sep 2014 | Refactor — Canvas events |
+| [#162](https://github.com/Synbiota/GENtle2/issues/162) | Selection disappears via context menu | Bug | Sep 2014 | — |
+| [#161](https://github.com/Synbiota/GENtle2/issues/161) | Selection disappears with hotkeys | Bug | Sep 2014 | — |
+| [#159](https://github.com/Synbiota/GENtle2/issues/159) | Tracking shapes in `Artist` | Feature, Refactor | Sep 2014 | Refactor — Canvas events |
+| [#158](https://github.com/Synbiota/GENtle2/issues/158) | Creating feature clears plasmid map | Bug, Refactor | Sep 2014 | — |
+| [#156](https://github.com/Synbiota/GENtle2/issues/156) | Caret moves unexpectedly during selection | Bug, Refactor | Sep 2014 | — |
+| [#132](https://github.com/Synbiota/GENtle2/issues/132) | Replace non-allowed chars on Genebank import | Backlog, Refactor | Jun 2014 | Refactor — Sequence opening |
 
-> **Takeaway:** GENtle2's active refactor milestone shows the community is attempting a modern web-based rewrite, but many issues date back to 2014–2015. The pace of progress is limited by a small contributor base. This is a prime opportunity for new contributors to step in.
+> **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has 75+ open issues of its own. The refactor milestones suggest awareness of the problems, but the 10+ year gap between issue creation and last update signals a community starved for contributors.
 
-### 4. Expanding the Rust-Based Tool Set (Syn-Zeug)
+### 4. Machine Learning & Automated Design (ART, 20n/act)
 
-Syn-Zeug's 10 open issues focus on two themes:
-- **New tool development:** ORF finding in proteins (#47), percent composition (#26), shuffle sequence (#17), mutate sequence (#8), miscellaneous tools (#42)
-- **Pipeline UX improvements:** Tooltip UI (#37), region info display (#39), pause tool in pipeline (#38), drag-and-drop pipeline building (#36)
+- **ART** provides **probabilistic strain recommendations** without requiring full mechanistic understanding — a paradigm shift from trial-and-error to computational-directed metabolic engineering. Uses MCMC sampling and Bayesian optimization. Source code is private (access via license).
+- **20n/act** demonstrates **end-to-end DNA design automation**, having predicted the first bio-route to acetaminophen. Its 10-module pipeline covers data integration, reaction inference, reachability computation, cascade enumeration, DNA design, NLP, and cost modeling. No open issues — maintained internally by 20n Inc.
 
-> **Takeaway:** The Sheffield-iGEM team is systematically expanding Syn-Zeug's capabilities. The pipeline UX issues (pause, drag-and-drop, tooltips) suggest they're thinking about usability beyond just adding features — a sign of maturity.
+> **Takeaway:** The field is moving from manual, intuition-driven engineering toward computational, ML-augmented design pipelines. However, ART's code is private and 20n/act is internally maintained — suggesting a gap for open-source alternatives.
 
-### 5. Machine Learning & Automated Design (ART, 20n/act)
+### 5. Modern Stacks & Feature Expansion (Syn-Zeug)
 
-- **ART** provides **probabilistic strain recommendations** without requiring full mechanistic understanding — a paradigm shift from trial-and-error to computational-directed metabolic engineering. Uses MCMC sampling and Bayesian optimization.
-- **20n/act** demonstrates **end-to-end DNA design automation**, having predicted the first bio-route to acetaminophen. Its 10-module pipeline covers data integration, reaction inference, reachability computation, cascade enumeration, DNA design, NLP, and cost modeling.
+Syn-Zeug's 10 open issues are all feature requests (no bug reports), including:
+- Protein ORF finding (#47)
+- Tooltips and UI polish (#37, #39)
+- Pipeline UX: pause, drag-and-drop (#38, #36)
+- New analysis tools: Percent Composition (#26), Shuffle Sequence (#17), Mutate Sequence (#8)
+- Dependency updates for upstream rust-bio (#46)
 
-> **Takeaway:** The field is moving from manual, intuition-driven engineering toward computational, ML-augmented design pipelines. However, ART's source code is private (access via license), and 20n/act is maintained internally — suggesting a gap for open-source alternatives.
+> **Takeaway:** Syn-Zeug's all-feature-request issue list signals a stable core ready for community expansion. The Rust+Svelte+WASM architecture is a pattern to watch — it may represent the future of web-native bioinformatics tooling.
 
 ### 6. Community Coordination & Resource Curation (awesome-synthetic-biology)
 
 - The curated list (223 stars, 27 forks) remains the **central hub** for discovering tools, standards (SBOL, SBML), programming languages (Verilog/Cello, Eugene), and hardware (BioHackAcademy, 3DuF)
-- Community contributions are welcome via a clear contributing guide
+- No open issues — the project is well-maintained and community contributions flow smoothly
 - Covers the full stack: software tools → standards → hardware → education → interviews
 
 > **Takeaway:** As the ecosystem fragments across dozens of specialized tools, curated indexes and standards become increasingly critical glue. Content creators should reference this list as the canonical starting point.
@@ -353,9 +341,6 @@ ART's code is private, 20n/act is internally maintained, and GENtle2 has a fract
 ### 5. "Standards Are Maturing, but Pipelines Aren't"
 SBOL and SBML are well-defined standards, but the *pipelines* that move data between tools (OMEX exports, recursive downloads, incremental sync) are broken. The standards exist; the plumbing doesn't. sboljs3 bringing SBOL to the browser is a promising sign — the next step is making those standards reachable from web-native tools end-to-end.
 
-### 6. "The Contributor Gap"
-Across GENtle2 (issues from 2015 still open), Syn-Zeug (issues from 2022 still open), and iBioSim (305+ open issues), a common theme is too few contributors. The tools are important, the need is real, but the communities are small. Content that highlights contribution opportunities, onboarding paths, and "good first issue" labels could help address this.
-
 ---
 
 ## Repository Structure
@@ -363,8 +348,8 @@ Across GENtle2 (issues from 2015 still open), Syn-Zeug (issues from 2022 still o
 This archive is organized by episode/theme:
 
 ```
-synthbio-episode-scripts/
-├── README.md                  ← You are here
+episode-scripts-archive/
+├── README.md
 ├── episodes/
 │   ├── episode-01-genome-editing/
 │   ├── episode-02-synbio-tools/
@@ -373,13 +358,15 @@ synthbio-episode-scripts/
 │   ├── episode-05-ml-designed-biology/
 │   ├── episode-06-rust-bioinformatics/
 │   ├── episode-07-sbol-web-standard/
-│   └── episode-08-contributor-gap/
+│   └── ...
 ├── source-materials/
 │   ├── presentations/
 │   ├── datasets/
 │   └── references/
 └── transcripts/
 ```
+
+Add a `CONTRIBUTING.md` with format and naming conventions.
 
 ---
 
@@ -431,4 +418,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*This archive was compiled from active GitHub research on the synthetic biology and biotech software ecosystem, capturing the tools, standards, and community concerns as of September 2026. Research methodology: repository search, star-ranked analysis, open-issue triage across 15+ projects, detailed issue inspection of 15+ high-priority bugs across 6 thematic categories, and direct review of community discussion threads on the most-reported issues (SynBioHub #1753, iBioSim #637).*
+*This archive was compiled from active GitHub research on the synthetic biology and biotech software ecosystem, capturing the tools, standards, and community concerns as of September 2026. Research methodology: repository search, star-ranked analysis, open-issue triage across 15+ projects, detailed issue inspection of 15+ high-priority bugs across 6 thematic categories, direct review of community discussion threads on the most-reported issues (SynBioHub #1753, iBioSim #637), and live commit-activity analysis of the two most actively maintained repos (SynBioHub: 5 commits/week; iBioSim: steady monthly fixes for headless mode and build deps).*
