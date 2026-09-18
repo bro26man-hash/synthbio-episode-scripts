@@ -39,7 +39,7 @@ Below are the most active open-source projects we've identified, along with the 
 - **What it does:** Web application enabling users and software to browse, upload, and share synthetic biology designs. Hosts the iGEM Registry of Standard Biological Parts and enriched *B. subtilis* and *E. coli* data.
 - **Stack:** JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore)
 - **Development model:** PR-based with CI (Travis + Docker integration tests via SBOLTestSuite); automatic Docker Hub publishing via GitHub Actions
-- **Current issue focus (8+ open issues in latest milestone SBH 1.6.2):** Data portability, interoperability, and infrastructure maintenance
+- **Current issue focus (8 open issues in latest milestone SBH 1.6.2):** Data portability, interoperability, and infrastructure maintenance
   - [Issue #1756 — SubCollections does not report members in public graph](https://github.com/SynBioHub/synbiohub/issues/1756) (bug, Sep 2026)
   - [Issue #1755 — Recursive download does not follow linked collections](https://github.com/SynBioHub/synbiohub/issues/1755) (bug, Aug 2026)
   - [Issue #1754 — Legacy data in Virtuoso should be deleted](https://github.com/SynBioHub/synbiohub/issues/1754) (Aug 2026)
@@ -71,7 +71,11 @@ Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 ```
 This is a transitive dependency conflict — Apache Jena can't initialize because Xerces is missing or conflicting. Users hitting this when trying to generate models from SBOL designs via SynBioHub integration.
 
-> **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. This signals a strong opportunity for containerized or web-based alternatives.
+**Community discussion highlights from #637:**
+- **Hatem-synbio** (reporter): Was debugging Kenzo's toggle switch model and following the iBioSim tutorial on page 94 for automatic model generation. Could share the COMBINE archive on Slack.
+- **cjmyers (maintainer)**: Asked which SynBioHub instance was being used; later identified the root cause — *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."*
+
+> **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. The #637 discussion reveals a deeper issue: iBioSim fails with a cryptic Jena/Xerces crash when the underlying data (iGEM parts) lacks the required interaction information — rather than giving a user-friendly error. This signals a strong opportunity for containerized or web-based alternatives with better error handling.
 
 #### 🔬 20n/act (92 stars, GPL-3.0 license)
 - **What it does:** Data aggregation and prediction system for bioengineering. Predicts DNA insertions into cells that modify them to produce target molecules ("bioreachables"). Predicted the first bio-route to acetaminophen/Tylenol.
@@ -90,7 +94,12 @@ This is a transitive dependency conflict — Apache Jena can't initialize becaus
   - [Issue #245 — Chromatograph vertical scroll bar display issues](https://github.com/Synbiota/GENtle2/issues/245) (Bug, Deathcon 1, Aug 2015)
   - [Issue #243 — Ghost tooltip (Designer: remove single part)](https://github.com/Synbiota/GENtle2/issues/243) (Bug, Deathcon 3, Aug 2015)
 
-> **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has its own open issues.
+**Community discussion highlights from #162:**
+- **ghost (reporter):** "When selection is made and copied through context menu the selection disappears." — Related to earlier optimization #129, author said "I'll fix it ASAP" but it remains open since 2014.
+- **#159 (6 comments):** "Tracking shapes in `Artist`" — Refactor milestone, suggesting the canvas event system needs a fundamental rethink.
+- The majority of open issues are tagged with **Refactor** milestones like "Canvas events & RES/annotation cards information" and "Sequence opening/editing," indicating the maintainer (alexandremeunier) has a modernization plan but limited bandwidth.
+
+> **Takeaway:** Even well-established tools have significant UI debt. The GENtle project's long-standing unaddressed issues suggest the community is waiting for a modernized, web-native replacement. GENtle2's rewrite is a step in this direction but still has its own open issues. The refactor milestones suggest awareness of the problems, but the 10+ year gap between issue creation and last update signals a community starved for contributors.
 
 #### 🔬 Coral (32 stars, MIT license)
 - **What it does:** Python library for encoding the process of designing synthetic DNA constructs. Mirrors traditional GUI-based design steps (ApE, j5, Benchling) as operations on data structures. Enables iterative design through analysis modules and connects seamlessly to outside libraries.
@@ -155,6 +164,10 @@ The SynBioHub team is actively fixing bugs around data portability — a sign th
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend should parse OR requests | bug | Jul 2026 | Backend lacks OR (or) query parsing support |
 | [#1693](https://github.com/SynBioHub/synbiohub/issues/1693) | SendGrid email service no longer working | bug | Oct 2025 | Email notification backend broken |
 
+**Community discussion highlights from #1753:**
+- **cjmyers (maintainer):** Explained that the root cause is *"Model->source is not followed to find all files. However, the SBML file will come in an OMEX download of the Attachment object or the Collection that has the Attachment as a member."*
+- Also noted: *"For SynBioSuite, fixed this by making the SBML file an attachment of the Model object."* — suggesting the fix is to restructure how SBML files are referenced within OMEX bundles.
+
 > **Takeaway:** The community is seriously focused on making design data more reliably portable and interoperable across tools. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points. This signals the ecosystem is maturing — users need dependable data pipelines.
 
 ### 2. Cross-Platform Compatibility & Stability (iBioSim)
@@ -172,7 +185,7 @@ iBioSim users are hitting friction on multiple fronts — 305+ open issues sugge
 | [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP SynBioHub | — | Apr 2024 | SynBioHub connection handshake failure |
 | [#631](https://github.com/MyersResearchGroup/iBioSim/issues/631) | Problem with External Components | — | Mar 2024 | External component integration problems |
 
-> **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. This signals a strong opportunity for containerized or web-based alternatives.
+> **Takeaway:** Desktop-based synbio CAD tools struggle with Java dependency management and OS-specific behavior. The #637 discussion reveals a deeper issue: iBioSim fails with a cryptic Jena/Xerces crash when the underlying data (iGEM parts) lacks the required interaction information — rather than giving a user-friendly error. This signals a strong opportunity for containerized or web-based alternatives with better error handling.
 
 ### 3. UI/UX Bugs in DNA Editors (GENtle2)
 
@@ -211,9 +224,9 @@ GENtle2's 75+ open issues (many dating to 2015) reveal persistent UX debt:
 
 Based on the research above, here are the stories the community is telling right now:
 
-1. **"The Interoperability Crisis"** — SynBioHub's open issues are almost all about data not moving correctly between tools (OMEX bundles missing files, recursive downloads breaking, incremental sync failing). This is the *current* bottleneck in the synbio workflow.
+1. **"The Interoperability Crisis"** — SynBioHub's open issues are almost all about data not moving correctly between tools (OMEX bundles missing files, recursive downloads breaking, incremental sync failing). The #1753 discussion reveals the root cause: `Model->source` references aren't traversed during export, so SBML attachments get orphaned. This is the *current* bottleneck in the synbio workflow.
 
-2. **"The Desktop Tool Bottleneck"** — iBioSim's 305+ issues and GENtle2's 75+ issues both point to the same problem: desktop-based CAD tools are struggling with Java dependency hell, OS compatibility, and aging UI codebases. Web-native and containerized tools are the future.
+2. **"The Desktop Tool Bottleneck"** — iBioSim's 305+ issues and GENtle2's 75+ issues both point to the same problem: desktop-based CAD tools are struggling with Java dependency hell, OS compatibility, and aging UI codebases. The #637 discussion shows even the maintainer (cjmyers) acknowledges the error message is unhelpful — *"there should be a better error than an exception."* Web-native and containerized tools are the future.
 
 3. **"From Hand Engineering to Computational Design"** — ART and 20n/act represent a fundamental shift: instead of designing one construct at a time, you enumerate all possible designs computationally and pick the best. This is the "DeepSeek moment" for synbio.
 
@@ -228,7 +241,7 @@ Based on the research above, here are the stories the community is telling right
 This archive is organized by episode/theme:
 
 ```
-synthbio-episode-scripts/
+episode-scripts-archive/
 ├── README.md
 ├── episodes/
 │   ├── episode-01-genome-editing/
@@ -279,4 +292,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*This archive was compiled from active GitHub research on the synthetic biology and biotech software ecosystem, capturing the tools, standards, and community concerns as of September 2026. Research methodology: repository search, star-ranked analysis, open-issue triage across 10+ projects, and detailed issue inspection of 15+ high-priority bugs across 5 thematic categories.*
+*This archive was compiled from active GitHub research on the synthetic biology and biotech software ecosystem, capturing the tools, standards, and community concerns as of September 2026. Research methodology: repository search, star-ranked analysis, open-issue triage across 10+ projects, detailed issue inspection of 15+ high-priority bugs across 5 thematic categories, and direct review of community discussion threads on the most-reported issues.*
